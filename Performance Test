@@ -1,0 +1,33 @@
+===============================================================================
+
+When test cases are executed, these metrics should be monitored:
+
+In the server side:
+  * Disk utilization
+  * CPU utilization
+  * Network utilization
+  * Memory utilization
+  
+In the client side:
+  * Response time
+  * Success/Fail rate
+  * QPS
+  * Throughput
+
+In the client side, below metrics are also need to be monitored, in case
+bottleneck comes from client side.
+  * Disk utilization
+  * CPU utilization
+  * Network utilization
+  * Memory utilization
+  
+
+Test scenarios:
+  * Test different percentage of N with various ranges. From 0% to 100%; from
+  Single range to multiple ranges.
+  * Increase the total request numbers, from small to big.
+
+Compare performance with different Cache_limit.
+Compare performance with different hardware configurations.
+
+===============================================================================

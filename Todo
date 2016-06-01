@@ -1,0 +1,30 @@
+===============================================================================
+Two parameter are provided:
+  * com.emc.interview.fibonacci.CACHE_LIMIT is for cache limit of fibonacci 
+  list. First N numbers will be calculated and saved in memory.
+  * com.emc.interview.servlet.MAXIMUM_N is the upper limit for "n" parameter. 
+  N is invalid, when N is bigger than MAXIMUM_N.
+
+As "n" becomes bigger, the job becomes I/O bound and CPU bound(Beyond 
+CACHE_LIMIT).With my personal computer, the time cost and the response data
+size are below. When n become bigger, CPU and network will becomes the 
+bottleneck.
+
+n=1000;  timecost=10;   size=103K
+n=5000;  timecost=1519; size=2.5M
+n=10000; timecost=8893; size=10M
+
+Two parameters can be optimized, based on customer behaviors. In the 
+/tmp/fib-log.log, request-ip, n, response-time of requests are saved. In order
+to understand requests better, Data mining can be done.
+  * If the percentage of large n is not small, Nginx and sever clusters can be 
+  established.
+  * If the percentage of large n bigger than CACHE_LIMIT is not small, 
+  CACHE_LIMIT can be increased. Otherwise, CACHE_LIMIT can be decreased.
+  * If the volume of request is not much and n is large, CACHE_LIMIT and 
+  MAXIMUM_N can be increased.
+  * n is very very big. To avoid CPU bound, results can be saved into DISK and
+  read from DISK, directly. 
+  
+Btw, all optimization are based on the server hardware configuration, including 
+memory, CPU, Network .etc.

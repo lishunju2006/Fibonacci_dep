@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Fibonacci" default="compile" basedir=".">
+    <property name="dest.dir" value="WebContent/WEB-INF/classes" />
+    <property name="src.dir" value="src" />
+	<property name="tomcat.lib" value="/Users/moya/work/apache-tomcat-6.0.45/lib" /> 
+    <target name="init">
+        <mkdir dir="${dest.dir}" />
+    </target>
+    <target name="compile" depends="clean,init">
+        <javac srcdir="${src.dir}" destdir="${dest.dir}" excludes="com/emc/interview/*/test/*" includeantruntime="on">
+        	
+            <classpath>
+                <fileset dir="${tomcat.lib}">  
+                    <include name="*.jar" />  
+                </fileset>  
+                <fileset dir="WebContent/WEB-INF/lib">
+                    <include name="*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+    <target name="clean">
+        <delete dir="${dest.dir}" />
+    </target>
+</project>

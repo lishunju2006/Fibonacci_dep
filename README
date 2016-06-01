@@ -1,0 +1,120 @@
+===============================================================================
+
+            ===================================================
+                        Web Service for Fibonacci
+            ===================================================
+
+The service is developed and tested in Mac OS 10.11.2. With Tomcat 6,Ant 1.9 
+and JDK 1.8.  
+
+=============================
+(1) JDK Installation
+=============================
+(1.1) Download a full Java Development Kit (JDK), from
+      http://www.oracle.com/technetwork/java/javase/downloads/index.html
+ 
+      The code is only tested in JDK 1.8.
+
+(1.2) Install the JDK according to the instructions included with the
+      release.
+
+=============================
+(2) ANT Installation
+=============================
+(2.1) Download ANT, from
+      http://ant.apache.org/bindownload.cgi
+      
+
+(2.2) Install the JDK according to the instructions included with the
+      release.
+
+=============================
+(3) Download and Install Apache Tomcat
+=============================
+(3.1) Download a binary distribution of Tomcat from:
+
+      http://tomcat.apache.org/
+
+(3.2) Unpack the binary distribution so that it resides in its own
+      directory (conventionally named "apache-tomcat-[version]").
+
+      For the purposes of the remainder of this document, the name
+      "CATALINA_HOME" is used to refer to the full pathname of that
+      directory.
+
+(3.3) Startup tomcat and test it. Make sure the installation is ok.
+      
+=============================
+(4) Configure Environment Variables  
+=============================
+All environment variables are configured in setenv.sh. Other shell
+scripts need to use them. 
+
+Change the variables in setenv.sh, with right locations.
+
+=============================
+(5) Compile  
+=============================
+Ant is used to compile the code. compile.sh is for code compile. Before run it,
+please make sure setenv.sh has been modified.
+
+=============================
+(6) Deploy  
+=============================
+After code is compiled, it can be deployed into tomcat by deploy.sh. All 
+necessary files will be copy into ${CATALINA_HOME}/webapps/Fibonacci/
+
+=============================
+(7) Startup  
+=============================
+After deploy, service can be started by startup.sh within source code file 
+folder. If you want, you can use the startup.sh provided by tomcat. 
+
+After service is up, test it with the url below:
+
+localhost:8080/Fibonacci/fibonacci?n=1#
+
+The port should be the one used by you.
+
+=============================
+(8) Watchdog  
+=============================
+Apache service might be aborted accidently. In order to recover it immediately,
+watchdog.sh is written to monitor the service. watchdog.sh has major functions:
+  * Check apache process by ps command
+  * If the process is ok, then do nothing.
+  * If the process is not there, send mail to administrator and restart apache.
+
+Recommend to add the script into crontab.
+ 
+=============================
+(9) Logs  
+=============================
+Logs are written into /tmp/fib-log.log. 
+
+=============================
+(10) Configuration  
+=============================
+(10.1) com.emc.interview.fibonacci.CACHE_LIMIT is for cache limit. First N 
+numbers will be calculated and saved in memory. For N samller than 
+CACHE_LIMIT, data will be read from memory directly. For the N bigger than 
+values are calculated.
+
+(10.2) com.emc.interview.servlet.MAXIMUM_N is the limit for "n" parameter.
+As "n" becomes bigger, the job becomes I/O bound and CPU bound. It's better
+to set a limit.
+
+=============================
+(11) Todo  
+=============================
+Refer to Todo, it describes how to adjust parameters, based on request 
+behaviors.
+
+=============================
+(12) Test cases  
+=============================
+(12.1) "Function Test" is about function tests.
+
+(12.2) "Performance Test" is about Performance tests.
+
+===============================================================================
