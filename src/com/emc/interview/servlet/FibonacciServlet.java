@@ -65,9 +65,10 @@ public class FibonacciServlet extends HttpServlet {
 			} else
 				out.print(i.toString());
 		}
-
+                System.out.print("add by lishunju");
+	
 		out.print(succeededRVSuffix);
-		
+	        System.out.print("add by lishunju");	
 		logger.info("n=" + s + "; code=1000" +";IP=" + request.getRemoteAddr() + ";Timecost=" + (System.currentTimeMillis() - current) );
 		
 	}
