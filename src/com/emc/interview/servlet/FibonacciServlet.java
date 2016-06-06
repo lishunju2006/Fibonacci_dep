@@ -77,6 +77,8 @@ public class FibonacciServlet extends HttpServlet {
 		logger.info("n=" + s + "; code=1000" +";IP=" + request.getRemoteAddr() + ";Timecost=" + (System.currentTimeMillis() - current) );
 		System.out.print("Added from Browser by zengjun8485.")
 		System.out.println("LIISHUSHSUSHSU from browser.");
+		System.out.println("zengjun8485 from browser.");
+
 	}
 
 	/**
